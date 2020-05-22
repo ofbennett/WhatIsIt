@@ -11,24 +11,37 @@ import AVFoundation
 import CoreML
 import Vision
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var takePhotoButton: UIButton!
+    @IBOutlet weak var resultsButton: UIButton!
     
-    let imagePicker = UIImagePickerController()
+    @IBAction func takePhotoButtonPressed(_ sender: UIButton) {
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    @IBAction func resultsButtonPressed(_ sender: UIButton) {
+    }
+    
+//    @IBOutlet weak var imageView: UIImageView!
+    
+    private let imagePicker = UIImagePickerController()
     private var greetingNotDone = true
+    private var itemIdentified: String?
+    private var selectedImageToDisplay: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "WhatIsIt?"
         imagePicker.delegate = self
         imagePicker.sourceType = .camera
         imagePicker.allowsEditing = false
+        takePhotoButton.layer.cornerRadius = takePhotoButton.frame.height / 3
+        resultsButton.layer.cornerRadius = resultsButton.frame.height / 3
     }
     
     override func viewDidAppear(_ animated: Bool) {
         let utterance = AVSpeechUtterance(string: "What would you like me to identify?")
-        //        utterance.voice = AVSpeechSynthesisVoice(language: "en-GB")
-        //        utterance.rate = 0.1
         let synthesizer = AVSpeechSynthesizer()
         if greetingNotDone {
             synthesizer.speak(utterance)
@@ -37,16 +50,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
     }
     
-    @IBAction func cameraTapped(_ sender: UIBarButtonItem) {
-        present(imagePicker, animated: true, completion: nil)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! ResultViewController
+        destinationVC.itemIdentified = itemIdentified
+        destinationVC.selectedImage = selectedImageToDisplay
     }
-    
+        
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            imageView.image = selectedImage
             if let ciimage = CIImage(image: selectedImage) {
-                let itemIdentified = detect(image: ciimage)
-                sayAnswer(with: itemIdentified)
+                itemIdentified = detect(image: ciimage)
+                selectedImageToDisplay = selectedImage
+                performSegue(withIdentifier: "goToResult", sender: self)
             }
         }
         imagePicker.dismiss(animated: true, completion: nil)
@@ -75,14 +90,5 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return topResult
     }
     
-    func sayAnswer(with result: String?) {
-        
-        let fullSentence = "That looks like a \(result ?? "Nothing Found")"
-        let utterance = AVSpeechUtterance(string: fullSentence)
-        //        utterance.voice = AVSpeechSynthesisVoice(language: "en-GB")
-        //        utterance.rate = 0.1
-        let synthesizer = AVSpeechSynthesizer()
-        synthesizer.speak(utterance)
-    }
 }
 
