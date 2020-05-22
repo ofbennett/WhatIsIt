@@ -26,6 +26,7 @@
 		76049A7424742EC100B06A12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		76049A7624742EC100B06A12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76C565042477FC3100A7DFD3 /* MobileNetV2FP16.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNetV2FP16.mlmodel; sourceTree = "<group>"; };
+		76DFA68D247806DC00FB5E94 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +43,7 @@
 		76049A5C24742EBE00B06A12 = {
 			isa = PBXGroup;
 			children = (
+				76DFA68D247806DC00FB5E94 /* README.md */,
 				76049A6724742EBE00B06A12 /* WhatIsIt */,
 				76049A6624742EBE00B06A12 /* Products */,
 			);
