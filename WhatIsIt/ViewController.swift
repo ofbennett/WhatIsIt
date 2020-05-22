@@ -27,7 +27,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let utterance = AVSpeechUtterance(string: "What would you like me to identify change?")
+        let utterance = AVSpeechUtterance(string: "What would you like me to identify?")
         //        utterance.voice = AVSpeechSynthesisVoice(language: "en-GB")
         //        utterance.rate = 0.1
         let synthesizer = AVSpeechSynthesizer()
