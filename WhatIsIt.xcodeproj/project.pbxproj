@@ -27,6 +27,7 @@
 		76049A7624742EC100B06A12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76C565042477FC3100A7DFD3 /* MobileNetV2FP16.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNetV2FP16.mlmodel; sourceTree = "<group>"; };
 		76DFA68D247806DC00FB5E94 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		76DFA68E24781AB700FB5E94 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +45,7 @@
 			isa = PBXGroup;
 			children = (
 				76DFA68D247806DC00FB5E94 /* README.md */,
+				76DFA68E24781AB700FB5E94 /* LICENSE */,
 				76049A6724742EBE00B06A12 /* WhatIsIt */,
 				76049A6624742EBE00B06A12 /* Products */,
 			);
