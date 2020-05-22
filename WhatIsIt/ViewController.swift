@@ -16,8 +16,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var imageView: UIImageView!
     
     let imagePicker = UIImagePickerController()
-    var itemIdentified: String?
-    var greetingNotDone = true
+    private var greetingNotDone = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,15 +45,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             imageView.image = selectedImage
             if let ciimage = CIImage(image: selectedImage) {
-                detect(image: ciimage)
-                sayAnswer()
+                let itemIdentified = detect(image: ciimage)
+                sayAnswer(with: itemIdentified)
             }
         }
         imagePicker.dismiss(animated: true, completion: nil)
     }
     
-    func detect (image: CIImage) {
-        
+    func detect (image: CIImage) -> String? {
+        var topResult: String?
         
         guard let model = try? VNCoreMLModel(for: MobileNetV2FP16().model) else {
             fatalError("Problem loading Model")
@@ -64,9 +63,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             guard let results = request.results as? [VNClassificationObservation] else {
                 fatalError("Problem loading model results")
             }
-            let topResult = results.first?.identifier
-            print(topResult ?? "Nothing found")
-            self.itemIdentified = topResult
+            topResult = results.first?.identifier
         }
         
         let handler = VNImageRequestHandler(ciImage: image)
@@ -75,11 +72,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         } catch {
             print("Problem handling request with error \(error)")
         }
+        return topResult
     }
     
-    func sayAnswer() {
+    func sayAnswer(with result: String?) {
         
-        let fullSentence = "That looks like a \(itemIdentified ?? "Nothing Found")"
+        let fullSentence = "That looks like a \(result ?? "Nothing Found")"
         let utterance = AVSpeechUtterance(string: fullSentence)
         //        utterance.voice = AVSpeechSynthesisVoice(language: "en-GB")
         //        utterance.rate = 0.1
