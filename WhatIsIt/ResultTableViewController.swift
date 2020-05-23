@@ -50,6 +50,15 @@ class ResultTableViewController: UITableViewController {
             }
         }
     }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            context.delete(resultArray![indexPath.row])
+            saveItems()
+            resultArray!.remove(at: indexPath.row)
+            tableView.reloadData()
+        }
+    }
 
     func loadItems(){
         let request: NSFetchRequest<SavedResult> = SavedResult.fetchRequest()
@@ -68,6 +77,14 @@ class ResultTableViewController: UITableViewController {
             destinationVC.finalResultText = resultStringToPass!
             destinationVC.selectedImage = imageToPass
             destinationVC.oldResult = true
+        }
+    }
+    
+    func saveItems(){
+        do {
+            try context.save()
+        } catch {
+            print("Problem saving items, \(error)")
         }
     }
     
