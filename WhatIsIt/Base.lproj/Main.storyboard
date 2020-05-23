@@ -67,10 +67,10 @@
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="87.723214285714278"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Result Table View Controller-->
         <scene sceneID="IkC-Ln-enM">
             <objects>
-                <tableViewController id="NiY-gm-YNb" sceneMemberID="viewController">
+                <tableViewController id="NiY-gm-YNb" customClass="ResultTableViewController" customModule="WhatIsIt" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="MwM-xr-Oba">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

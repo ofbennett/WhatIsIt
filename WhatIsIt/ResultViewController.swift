@@ -18,6 +18,7 @@ class ResultViewController: UIViewController {
     private let numItemsToShow = 5
     private var topItem: String?
     private var topConfidence: Float?
+    var oldResult = false
     var finalResultText: String = ""
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -28,6 +29,37 @@ class ResultViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if oldResult {
+            loadOldResult()
+        } else {
+            loadNewResult()
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if let topConfidence = topConfidence {
+            if topConfidence > Float(0.3) {
+                sayAnswer(with: topItem)
+            } else {
+                sayNothingFound()
+            }
+        }
+    }
+    
+    @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+        let newResult = SavedResult(context: context)
+        newResult.resultString = finalResultText
+        guard let imageData = selectedImage?.jpegData(compressionQuality: 1.0) else {
+            fatalError("No image data to save")
+        }
+        newResult.image = imageData
+        newResult.timeStamp = Date()
+        saveItems()
+        saveButton.isEnabled = false
+        saveButton.title = "Result Saved"
+    }
+    
+    func loadNewResult(){
         resultImage.image = selectedImage
         resultLabel.text = ""
         if let items = itemsIdentified {
@@ -50,28 +82,12 @@ class ResultViewController: UIViewController {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        if let topConfidence = topConfidence {
-            if topConfidence > Float(0.3) {
-                sayAnswer(with: topItem)
-            } else {
-                sayNothingFound()
-            }
-        }
-    }
-    
-    @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
-        let newResult = SavedResult(context: context)
-        newResult.resultString = finalResultText
-        guard let imageData = selectedImage?.pngData() else {
-            fatalError("No image data to save")
-        }
-        newResult.image = imageData
-        saveItems()
+    func loadOldResult(){
+        resultImage.image = selectedImage
+        resultLabel.text = finalResultText
         saveButton.isEnabled = false
-        saveButton.title = "Result Saved"
+        saveButton.tintColor = UIColor.clear
     }
-    
     
     func sayAnswer(with result: String?) {
         

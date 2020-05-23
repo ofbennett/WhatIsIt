@@ -21,6 +21,7 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     @IBAction func resultsButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "goToPreviousResultTable", sender: self)
     }
     
     private let imagePicker = UIImagePickerController()
@@ -49,9 +50,11 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as! ResultViewController
-        destinationVC.itemsIdentified = itemsIdentified
-        destinationVC.selectedImage = selectedImageToDisplay
+        if segue.identifier == "goToResult" {
+            let destinationVC = segue.destination as! ResultViewController
+            destinationVC.itemsIdentified = itemsIdentified
+            destinationVC.selectedImage = selectedImageToDisplay
+        }
     }
         
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

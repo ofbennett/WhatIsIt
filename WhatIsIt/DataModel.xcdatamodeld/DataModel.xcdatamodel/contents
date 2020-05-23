@@ -3,8 +3,9 @@
     <entity name="SavedResult" representedClassName=".SavedResult" syncable="YES" codeGenerationType="class">
         <attribute name="image" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="resultString" attributeType="String"/>
+        <attribute name="timeStamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <elements>
-        <element name="SavedResult" positionX="-63" positionY="-18" width="128" height="73"/>
+        <element name="SavedResult" positionX="-63" positionY="-18" width="128" height="88"/>
     </elements>
 </model>

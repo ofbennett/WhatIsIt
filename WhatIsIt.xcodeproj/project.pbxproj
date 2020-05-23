@@ -16,6 +16,7 @@
 		76C565052477FC3100A7DFD3 /* MobileNetV2FP16.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 76C565042477FC3100A7DFD3 /* MobileNetV2FP16.mlmodel */; };
 		76DFA69024781F9200FB5E94 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DFA68F24781F9200FB5E94 /* ResultViewController.swift */; };
 		76DFA69324793DB400FB5E94 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 76DFA69124793DB400FB5E94 /* DataModel.xcdatamodeld */; };
+		76DFA6952479599400FB5E94 /* ResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DFA6942479599400FB5E94 /* ResultTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		76DFA68E24781AB700FB5E94 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
 		76DFA68F24781F9200FB5E94 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		76DFA69224793DB400FB5E94 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		76DFA6942479599400FB5E94 /* ResultTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 				76049A6C24742EBE00B06A12 /* WelcomeViewController.swift */,
 				76049A6E24742EBE00B06A12 /* Main.storyboard */,
 				76DFA68F24781F9200FB5E94 /* ResultViewController.swift */,
+				76DFA6942479599400FB5E94 /* ResultTableViewController.swift */,
 				76DFA69124793DB400FB5E94 /* DataModel.xcdatamodeld */,
 				76049A7124742EC100B06A12 /* Assets.xcassets */,
 				76049A7324742EC100B06A12 /* LaunchScreen.storyboard */,
@@ -155,6 +158,7 @@
 				76049A6D24742EBE00B06A12 /* WelcomeViewController.swift in Sources */,
 				76C565052477FC3100A7DFD3 /* MobileNetV2FP16.mlmodel in Sources */,
 				76DFA69324793DB400FB5E94 /* DataModel.xcdatamodeld in Sources */,
+				76DFA6952479599400FB5E94 /* ResultTableViewController.swift in Sources */,
 				76049A6924742EBE00B06A12 /* AppDelegate.swift in Sources */,
 				76049A6B24742EBE00B06A12 /* SceneDelegate.swift in Sources */,
 			);
