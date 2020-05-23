@@ -31,7 +31,8 @@ class ResultTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
 
         if let resultArray = resultArray {
-            cell.textLabel?.text = resultArray[indexPath.row].resultString
+            let substring = resultArray[indexPath.row].resultString?.split(separator: "\n")[0]
+            cell.textLabel?.text = String(substring ?? "Previous Result")
             cell.accessoryType = .disclosureIndicator
         }
         
