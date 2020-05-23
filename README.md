@@ -9,6 +9,8 @@ A simple swift iOS app that uses the [MobileNetV2](https://arxiv.org/abs/1801.04
 
 If the model produces a prediction with high confidence the app will vocalise the result :)
 
+<p align="center"><img src="./screenshots.jpg" width="800"></p>
+
 ## To Do
 - Add a settings view to control user preferences
 - Add the ability to try different models

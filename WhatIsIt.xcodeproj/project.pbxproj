@@ -34,6 +34,7 @@
 		76DFA68F24781F9200FB5E94 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		76DFA69224793DB400FB5E94 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		76DFA6942479599400FB5E94 /* ResultTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewController.swift; sourceTree = "<group>"; };
+		76DFA69624799DC300FB5E94 /* screenshots.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = screenshots.jpg; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +52,7 @@
 			isa = PBXGroup;
 			children = (
 				76DFA68D247806DC00FB5E94 /* README.md */,
+				76DFA69624799DC300FB5E94 /* screenshots.jpg */,
 				76DFA68E24781AB700FB5E94 /* LICENSE */,
 				76049A6724742EBE00B06A12 /* WhatIsIt */,
 				76049A6624742EBE00B06A12 /* Products */,
