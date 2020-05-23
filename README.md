@@ -13,4 +13,4 @@ If the model produces a prediction with high confidence the app will vocalise th
 
 ## To Do
 - Add a settings view to control user preferences
-- Add the ability to try different models
+- Add the ability to choose different models for predicting objects
