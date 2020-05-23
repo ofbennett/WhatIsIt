@@ -135,10 +135,17 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hAz-LO-tDi"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Rjf-yI-fAI"/>
+                    <navigationItem key="navigationItem" id="Rjf-yI-fAI">
+                        <barButtonItem key="rightBarButtonItem" title="Save Result" id="GGm-qN-Xho">
+                            <connections>
+                                <action selector="saveButtonPressed:" destination="OS5-SI-CPe" id="xdl-tw-MZE"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="resultImage" destination="jkY-lM-Ibf" id="a9u-88-RBq"/>
                         <outlet property="resultLabel" destination="g9i-3y-q1C" id="Oid-sf-nli"/>
+                        <outlet property="saveButton" destination="GGm-qN-Xho" id="15i-rB-irI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b6C-8a-Sae" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

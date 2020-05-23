@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import Vision
+import CoreData
 
 class ResultViewController: UIViewController {
     
@@ -18,7 +19,13 @@ class ResultViewController: UIViewController {
     private var topItem: String?
     private var topConfidence: Float?
     var finalResultText: String = ""
-
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    @IBOutlet weak var resultImage: UIImageView!
+    @IBOutlet weak var resultLabel: UILabel!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         resultImage.image = selectedImage
@@ -41,7 +48,6 @@ class ResultViewController: UIViewController {
             }
             resultLabel.text = finalResultText
         }
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -54,8 +60,18 @@ class ResultViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var resultImage: UIImageView!
-    @IBOutlet weak var resultLabel: UILabel!
+    @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+        let newResult = SavedResult(context: context)
+        newResult.resultString = finalResultText
+        guard let imageData = selectedImage?.pngData() else {
+            fatalError("No image data to save")
+        }
+        newResult.image = imageData
+        saveItems()
+        saveButton.isEnabled = false
+        saveButton.title = "Result Saved"
+    }
+    
     
     func sayAnswer(with result: String?) {
         
@@ -69,6 +85,14 @@ class ResultViewController: UIViewController {
         let utterance = AVSpeechUtterance(string: "I'm not sure what that is")
         let synthesizer = AVSpeechSynthesizer()
         synthesizer.speak(utterance)
+    }
+    
+    func saveItems(){
+        do {
+            try context.save()
+        } catch {
+            print("Problem saving items, \(error)")
+        }
     }
 
 }
