@@ -31,7 +31,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0nL-VQ-8nZ">
-                                <rect key="frame" x="117" y="549" width="180" height="60"/>
+                                <rect key="frame" x="117" y="518" width="180" height="60"/>
                                 <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="dbE-vS-a3Y"/>
@@ -57,7 +57,7 @@
                         <constraints>
                             <constraint firstItem="0nL-VQ-8nZ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4Mp-uY-qH7"/>
                             <constraint firstItem="Usq-TC-ZBY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GXJ-8E-09V"/>
-                            <constraint firstItem="0nL-VQ-8nZ" firstAttribute="top" secondItem="Usq-TC-ZBY" secondAttribute="bottom" constant="101" id="LM0-R6-ij5"/>
+                            <constraint firstItem="0nL-VQ-8nZ" firstAttribute="top" secondItem="Usq-TC-ZBY" secondAttribute="bottom" constant="70" id="LM0-R6-ij5"/>
                             <constraint firstItem="Usq-TC-ZBY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="300" id="Lg3-c7-c99"/>
                             <constraint firstItem="Yjb-Dl-HRi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="YvW-al-mIU"/>
                             <constraint firstItem="Yjb-Dl-HRi" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="44" id="a7n-tW-cRj"/>
