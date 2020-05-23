@@ -23,11 +23,9 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBAction func resultsButtonPressed(_ sender: UIButton) {
     }
     
-//    @IBOutlet weak var imageView: UIImageView!
-    
     private let imagePicker = UIImagePickerController()
     private var greetingNotDone = true
-    private var itemIdentified: String?
+    private var itemsIdentified: [VNClassificationObservation]?
     private var selectedImageToDisplay: UIImage?
     
     override func viewDidLoad() {
@@ -52,14 +50,14 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! ResultViewController
-        destinationVC.itemIdentified = itemIdentified
+        destinationVC.itemsIdentified = itemsIdentified
         destinationVC.selectedImage = selectedImageToDisplay
     }
         
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             if let ciimage = CIImage(image: selectedImage) {
-                itemIdentified = detect(image: ciimage)
+                itemsIdentified = detect(image: ciimage)
                 selectedImageToDisplay = selectedImage
                 performSegue(withIdentifier: "goToResult", sender: self)
             }
@@ -67,8 +65,8 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
         imagePicker.dismiss(animated: true, completion: nil)
     }
     
-    func detect (image: CIImage) -> String? {
-        var topResult: String?
+    func detect (image: CIImage) -> [VNClassificationObservation]? {
+        var resultsToReturn: [VNClassificationObservation]?
         
         guard let model = try? VNCoreMLModel(for: MobileNetV2FP16().model) else {
             fatalError("Problem loading Model")
@@ -78,7 +76,7 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
             guard let results = request.results as? [VNClassificationObservation] else {
                 fatalError("Problem loading model results")
             }
-            topResult = results.first?.identifier
+            resultsToReturn = results
         }
         
         let handler = VNImageRequestHandler(ciImage: image)
@@ -87,7 +85,7 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
         } catch {
             print("Problem handling request with error \(error)")
         }
-        return topResult
+        return resultsToReturn
     }
     
 }

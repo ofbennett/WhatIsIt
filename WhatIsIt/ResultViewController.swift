@@ -8,25 +8,51 @@
 
 import UIKit
 import AVFoundation
+import Vision
 
 class ResultViewController: UIViewController {
     
     var selectedImage: UIImage?
-    var itemIdentified: String?
+    var itemsIdentified: [VNClassificationObservation]?
+    private let numItemsToShow = 5
+    private var topItem: String?
+    private var topConfidence: Float?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         resultImage.image = selectedImage
-        resultLabel.text = itemIdentified
-        // Do any additional setup after loading the view.
+        resultLabel.text = ""
+        if let items = itemsIdentified {
+            for i in 0...numItemsToShow {
+                print(items[i].confidence, items[i].identifier)
+                let percent = String(format: "%.1f" ,items[i].confidence * 100)+"%"
+                let simpleItem = items[i].identifier.split(separator: ",")[0]
+                if i == 0 {
+                    topItem = String(simpleItem)
+                    topConfidence = items[i].confidence
+                }
+                if percent.count == 5 {
+                    resultLabel.text?.append(contentsOf: percent + "   ")
+                } else {
+                    resultLabel.text?.append(contentsOf: percent + "     ")
+                }
+                resultLabel.text?.append(contentsOf: simpleItem + "\n")
+            }
+        }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        sayAnswer(with: itemIdentified)
+        if let topConfidence = topConfidence {
+            if topConfidence > Float(0.3) {
+                sayAnswer(with: topItem)
+            } else {
+                sayNothingFound()
+            }
+        }
     }
     
     @IBOutlet weak var resultImage: UIImageView!
-    
     @IBOutlet weak var resultLabel: UILabel!
     
     func sayAnswer(with result: String?) {
@@ -37,15 +63,10 @@ class ResultViewController: UIViewController {
         synthesizer.speak(utterance)
     }
     
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func sayNothingFound() {
+        let utterance = AVSpeechUtterance(string: "I'm not sure what that is")
+        let synthesizer = AVSpeechSynthesizer()
+        synthesizer.speak(utterance)
     }
-    */
 
 }
