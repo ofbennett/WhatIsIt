@@ -17,6 +17,7 @@ class ResultViewController: UIViewController {
     private let numItemsToShow = 5
     private var topItem: String?
     private var topConfidence: Float?
+    var finalResultText: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,12 +33,13 @@ class ResultViewController: UIViewController {
                     topConfidence = items[i].confidence
                 }
                 if percent.count == 5 {
-                    resultLabel.text?.append(contentsOf: percent + "   ")
+                    finalResultText.append(contentsOf: percent + "   ")
                 } else {
-                    resultLabel.text?.append(contentsOf: percent + "     ")
+                    finalResultText.append(contentsOf: percent + "     ")
                 }
-                resultLabel.text?.append(contentsOf: simpleItem + "\n")
+                finalResultText.append(contentsOf: simpleItem + "\n")
             }
+            resultLabel.text = finalResultText
         }
         
     }

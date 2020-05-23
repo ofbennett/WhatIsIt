@@ -39,10 +39,10 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let utterance = AVSpeechUtterance(string: "What would you like me to identify?")
-        let synthesizer = AVSpeechSynthesizer()
+//        let utterance = AVSpeechUtterance(string: "What would you like me to identify?")
+//        let synthesizer = AVSpeechSynthesizer()
         if greetingNotDone {
-            synthesizer.speak(utterance)
+//            synthesizer.speak(utterance)
             greetingNotDone = false
         }
         
