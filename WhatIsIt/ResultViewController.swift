@@ -15,7 +15,7 @@ class ResultViewController: UIViewController {
     
     var selectedImage: UIImage?
     var itemsIdentified: [VNClassificationObservation]?
-    private let numItemsToShow = 5
+    private let numItemsToShow = 6
     private var topItem: String?
     private var topConfidence: Float?
     var oldResult = false
@@ -63,7 +63,7 @@ class ResultViewController: UIViewController {
         resultImage.image = selectedImage
         resultLabel.text = ""
         if let items = itemsIdentified {
-            for i in 0...numItemsToShow {
+            for i in 0..<numItemsToShow {
                 print(items[i].confidence, items[i].identifier)
                 let percent = String(format: "%.1f" ,items[i].confidence * 100)+"%"
                 let simpleItem = items[i].identifier.split(separator: ",")[0]
